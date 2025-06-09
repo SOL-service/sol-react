@@ -19,29 +19,435 @@ interface Category {
 
 const categories: Category[] = [
   { id: 'all', name: '전체' },
-  { id: 'event', name: '이벤트' },
-  { id: 'promotion', name: '프로모션' },
-  { id: 'exhibition', name: '전시회' },
-  { id: 'conference', name: '컨퍼런스' },
+  { id: 'planning', name: '기획 및 연출' },
+  { id: 'btl', name: 'BTL 프로모션 기획' },
+  { id: 'outsourcing', name: '아웃소싱' },
+  { id: 'model', name: '전문모델' },
+  { id: 'influencer', name: '인플루언서 마케팅' }
 ];
 
 const portfolioItems: PortfolioItem[] = [
   {
     id: 1,
-    title: '글로벌 테크 컨퍼런스',
-    description: '세계 각국의 IT 전문가들이 참여한 대규모 컨퍼런스 운영',
+    category: 'planning',
+    title: '2024 신년 컨퍼런스',
+    description: '대규모 기업 행사 기획 및 연출',
     image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
     images: [
       'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
     ],
-    tags: ['컨퍼런스', '글로벌', 'IT'],
-    category: 'conference',
+    tags: ['행사기획', '무대연출', '현장관리'],
   },
-  // Add more portfolio items here
-];
+  {
+    id: 2,
+    category: 'btl',
+    title: '럭셔리 브랜드 팝업스토어',
+    description: '프리미엄 브랜드 BTL 마케팅',
+    image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['팝업스토어', '브랜드마케팅', '현장프로모션'],
+  },
+  {
+    id: 3,
+    category: 'outsourcing',
+    title: '백화점 VIP 라운지',
+    description: '프리미엄 서비스 전문인력 아웃소싱',
+    image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['VIP서비스', '전문인력', '서비스교육'],
+  },
+  {
+    id: 4,
+    category: 'model',
+    title: '패션위크 런웨이 쇼',
+    description: '전문 모델 캐스팅 및 무대 연출',
+    image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['패션쇼', '전문모델', '런웨이'],
+  },
+  {
+    id: 5,
+    category: 'influencer',
+    title: '신제품 론칭 캠페인',
+    description: '인플루언서 마케팅 전략 기획',
+    image: 'https://images.unsplash.com/photo-1556741533-6e6a62bd8b49?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1556741533-6e6a62bd8b49?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['인플루언서', '디지털마케팅', '브랜드홍보'],
+  },
+  {
+    id: 6,
+    category: 'planning',
+    title: '기업 창립 기념식',
+    description: '대규모 기념행사 기획 및 운영',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['행사기획', '무대연출', '케이터링'],
+  },
+  {
+    id: 7,
+    category: 'btl',
+    title: '자동차 신모델 발표회',
+    description: '신차 발표회 BTL 프로모션',
+    image: 'https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['신차발표', '프로모션', '이벤트'],
+  },
+  {
+    id: 8,
+    category: 'outsourcing',
+    title: '국제 컨벤션 행사',
+    description: '글로벌 컨벤션 전문인력 운영',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['컨벤션', '통역', '운영인력'],
+  },
+  {
+    id: 9,
+    category: 'model',
+    title: '화장품 브랜드 촬영',
+    description: '뷰티 화보 전문 모델 섭외',
+    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['뷰티모델', '화보촬영', '광고'],
+  },
+  {
+    id: 10,
+    category: 'influencer',
+    title: '식품 브랜드 콜라보',
+    description: '푸드 인플루언서 마케팅',
+    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['푸드마케팅', '콜라보레이션', 'SNS'],
+  },
+  {
+    id: 11,
+    category: 'planning',
+    title: '대학 축제 기획',
+    description: '대규모 축제 기획 및 아티스트 섭외',
+    image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['축제기획', '공연기획', '아티스트섭외'],
+  },
+  {
+    id: 12,
+    category: 'btl',
+    title: '쇼핑몰 시즌 프로모션',
+    description: '대형 쇼핑몰 시즌 마케팅',
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['시즌마케팅', '쇼핑몰', '프로모션'],
+  },
+  {
+    id: 13,
+    category: 'outsourcing',
+    title: '호텔 뷔페 서비스',
+    description: '특급호텔 서비스 인력 아웃소싱',
+    image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['호텔서비스', '뷔페', '전문인력'],
+  },
+  {
+    id: 14,
+    category: 'model',
+    title: '스포츠웨어 화보',
+    description: '스포츠 모델 캐스팅',
+    image: 'https://images.unsplash.com/photo-1526504275103-575a4f5d0d1c?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1526504275103-575a4f5d0d1c?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['스포츠모델', '화보', '광고촬영'],
+  },
+  {
+    id: 15,
+    category: 'influencer',
+    title: '여행 콘텐츠 제작',
+    description: '여행 인플루언서 마케팅',
+    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['여행', '콘텐츠제작', '인플루언서'],
+  },
+  {
+    id: 16,
+    category: 'planning',
+    title: '제품 론칭 쇼케이스',
+    description: '신제품 발표회 기획 및 연출',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['제품론칭', '쇼케이스', '행사기획'],
+  },
+  {
+    id: 17,
+    category: 'btl',
+    title: '음료 브랜드 로드쇼',
+    description: '전국 순회 프로모션 진행',
+    image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['로드쇼', '시음행사', '프로모션'],
+  },
+  {
+    id: 18,
+    category: 'outsourcing',
+    title: '전시회 부스 운영',
+    description: '전시회 전문 인력 파견',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['전시회', '부스운영', '전문인력'],
+  },
+  {
+    id: 19,
+    category: 'model',
+    title: '웨딩드레스 컬렉션',
+    description: '웨딩 전문 모델 캐스팅',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['웨딩모델', '패션쇼', '촬영'],
+  },
+  {
+    id: 20,
+    category: 'influencer',
+    title: '뷰티 제품 리뷰',
+    description: '뷰티 인플루언서 협업',
+    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['뷰티', '제품리뷰', '인플루언서'],
+  },
+  {
+    id: 21,
+    category: 'planning',
+    title: '음악 페스티벌',
+    description: '야외 페스티벌 기획 및 운영',
+    image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['페스티벌', '공연기획', '행사운영'],
+  },
+  {
+    id: 22,
+    category: 'btl',
+    title: '게임 출시 이벤트',
+    description: '게임 론칭 프로모션',
+    image: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['게임마케팅', '론칭이벤트', '프로모션'],
+  },
+  {
+    id: 23,
+    category: 'outsourcing',
+    title: '골프대회 운영',
+    description: '골프대회 전문 인력 관리',
+    image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['골프대회', '이벤트', '전문인력'],
+  },
+  {
+    id: 24,
+    category: 'model',
+    title: '주얼리 화보촬영',
+    description: '주얼리 브랜드 전문 모델',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['주얼리', '화보모델', '광고촬영'],
+  },
+  {
+    id: 25,
+    category: 'influencer',
+    title: '가전제품 리뷰',
+    description: '테크 인플루언서 마케팅',
+    image: 'https://images.unsplash.com/photo-1556741533-6e6a62bd8b49?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1556741533-6e6a62bd8b49?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['가전제품', '테크리뷰', '인플루언서'],
+  },
+  {
+    id: 26,
+    category: 'planning',
+    title: '기업 송년회',
+    description: '대규모 송년행사 기획',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['송년회', '행사기획', '공연연출'],
+  },
+  {
+    id: 27,
+    category: 'btl',
+    title: '향수 브랜드 팝업',
+    description: '럭셔리 향수 프로모션',
+    image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['향수', '팝업스토어', '럭셔리'],
+  },
+  {
+    id: 28,
+    category: 'outsourcing',
+    title: '방송 프로그램 스태프',
+    description: '방송 제작 인력 아웃소싱',
+    image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['방송제작', '스태프', '전문인력'],
+  },
+  {
+    id: 29,
+    category: 'model',
+    title: '시계 브랜드 화보',
+    description: '명품 시계 화보 촬영',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['시계', '화보모델', '럭셔리'],
+  },
+  {
+    id: 30,
+    category: 'influencer',
+    title: '레스토랑 맛집 리뷰',
+    description: '맛집 인플루언서 마케팅',
+    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&q=80'
+    ],
+    tags: ['맛집', '푸드리뷰', '인플루언서'],
+  }
+]
 
 const Portfolio: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -50,11 +456,13 @@ const Portfolio: React.FC = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
   const [isExpandedView, setIsExpandedView] = useState<boolean>(false);
 
-  const filteredPortfolio = portfolioItems
-    .filter(item => selectedCategory === 'all' || item.category === selectedCategory)
-    .slice(0, visibleItemCount);
+  const filteredItems = portfolioItems.filter(
+  item => selectedCategory === 'all' || item.category === selectedCategory
+);
 
-  const hasMoreItems = visibleItemCount < portfolioItems.length;
+const filteredPortfolio = filteredItems.slice(0, visibleItemCount);
+
+const hasMoreItems = visibleItemCount < filteredItems.length;
 
   const loadMore = () => {
     setVisibleItemCount(prev => prev + 12);
@@ -101,7 +509,7 @@ const Portfolio: React.FC = () => {
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 relative overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-black/40 z-10"></div>
+            <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
             <img 
               src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80"
               alt="Portfolio Hero Background" 
@@ -156,9 +564,9 @@ const Portfolio: React.FC = () => {
                     />
                   </div>
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6">
+                  <div className="absolute inset-0 bg-black bg-opacity-30 hover:bg-opacity-60 flex flex-col justify-end p-6">
                     <h3 className="text-white text-xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-white/90">{item.description}</p>
+                    <p className="text-white text-opacity-90">{item.description}</p>
                   </div>
                 </div>
               ))}
@@ -181,7 +589,7 @@ const Portfolio: React.FC = () => {
         {/* Portfolio Modal */}
         {selectedItem && (
           <div 
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
             onClick={(e) => {
               if (e.target === e.currentTarget) closeModal();
             }}
@@ -216,7 +624,7 @@ const Portfolio: React.FC = () => {
                 {/* Expanded Image Viewer */}
                 {isExpandedView && (
                   <div 
-                    className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+                    className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
                     onClick={(e) => {
                       if (e.target === e.currentTarget) toggleExpandedView();
                     }}
@@ -302,7 +710,7 @@ const Portfolio: React.FC = () => {
         {/* CTA Section */}
         <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 relative overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-black/40 z-10" />
+            <div className="absolute inset-0 bg-black bg-opacity-40 z-10" />
             <img 
               src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
               alt="Portfolio CTA Background" 
@@ -311,7 +719,10 @@ const Portfolio: React.FC = () => {
           </div>
           <div className="container mx-auto px-4 relative z-20 text-center">
             <h2 className="text-3xl font-bold mb-8">지금 바로 SOL과 함께 성공적인 프로젝트를 시작하세요</h2>
-            <p className="text-xl text-gray-600 mb-8">수많은 성공 사례로 검증된 솔루션과 노하우로, 귀사의 비전을 현실로 만들어드리겠습니다</p>
+            <p className="text-xl text-white mb-8">수많은 성공 사례로 검증된 솔루션과 노하우로, 귀사의 비전을 현실로 만들어드리겠습니다</p>
+            <button className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-white/90">
+              상담 신청하기
+            </button>
           </div>
         </section>
       </main>

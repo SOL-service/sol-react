@@ -108,34 +108,23 @@ const About: React.FC = () => {
         <section className="bg-gray-100 py-20">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">조직도</h2>
-            <div className="max-w-4xl mx-auto">
-              {/* 대표이사 */}
-              <div className="text-center mb-24 relative">
+            <div className="max-w-4xl mx-auto relative">
+              {/* 대표이사 및 선 */}
+              <div className="flex flex-col items-center mb-12 relative">
                 <div className="bg-white p-6 rounded-lg shadow-lg inline-block min-w-[240px] relative z-10">
                   <h3 className="text-xl font-bold text-blue-600">대표이사</h3>
                 </div>
-                {/* 수직 연결선 */}
-                <div className="absolute h-32 w-0.5 bg-gray-400 left-1/2 -translate-x-1/2 top-[100%]"></div>
+                {/* 중앙 수직선 */}
+                <div className="hidden md:block w-0.5 h-12 bg-gray-200 mt-0"></div>
+                {/* 수평선 */}
+                <div className="hidden md:block w-full h-0.5 bg-gray-200"></div>
               </div>
 
               {/* 두 개의 메인 부서 */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 relative">
-                {/* 수평 연결선 (데스크톱) */}
-                <div className="hidden md:block absolute w-[calc(100%-200px)] h-0.5 bg-gray-400 left-1/2 -translate-x-1/2 -top-16"></div>
-                
-                {/* 왼쪽 수직 연결선 (데스크톱) */}
-                <div className="hidden md:block absolute h-16 w-0.5 bg-gray-400 left-[120px] -top-16"></div>
-                
-                {/* 오른쪽 수직 연결선 (데스크톱) */}
-                <div className="hidden md:block absolute h-16 w-0.5 bg-gray-400 right-[120px] -top-16"></div>
-
-                {/* 모바일 연결선 */}
-                <div className="md:hidden absolute h-full w-0.5 bg-gray-400 left-1/2 -translate-x-1/2 -top-8"></div>
-
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
                 {/* BTL 프로모션 */}
                 <div className="relative">
-                  {/* 모바일 가로 연결선 */}
-                  <div className="md:hidden absolute w-8 h-0.5 bg-gray-400 left-1/2 -translate-x-full top-[36px]"></div>
+                  <div className="w-0.5 h-12 bg-gray-200 absolute left-1/2 -top-12"></div>
                   <div className="bg-white p-6 rounded-lg shadow-lg text-center mb-6 h-[80px] flex items-center justify-center relative z-10">
                     <h4 className="text-xl font-bold text-blue-600">BTL 프로모션</h4>
                   </div>
@@ -154,13 +143,12 @@ const About: React.FC = () => {
 
                 {/* 아웃소싱 & 매니지먼트 */}
                 <div className="relative">
-                  {/* 모바일 가로 연결선 */}
-                  <div className="md:hidden absolute w-8 h-0.5 bg-gray-400 left-1/2 -translate-x-full top-[36px]"></div>
+                  <div className="w-0.5 h-12 bg-gray-200 absolute left-1/2 -top-12"></div>
                   <div className="bg-white p-6 rounded-lg shadow-lg text-center mb-6 h-[80px] flex items-center justify-center relative z-10">
                     <h4 className="text-xl font-bold text-blue-600">아웃소싱 & 매니지먼트</h4>
                   </div>
                   <div className="space-y-4">
-                    <div className="bg-white p-6 rounded-lg shadow-lg h-[80px] flex items-center justify-center relative z-10">
+                    <div className="bg-white p-6 rounded-lg shadow-lg h-[80px] flex items-center justify-center relative z-10" style={{ height: 72 }}>
                       <p className="text-gray-600 text-center font-medium">셀럽, 인플루언서<br/>마케팅 사업부</p>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-lg h-[80px] flex items-center justify-center relative z-10">

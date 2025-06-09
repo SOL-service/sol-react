@@ -665,7 +665,7 @@ const Home: React.FC = () => {
                         className="mt-1 mr-2" 
                         required
                       />
-                      <label className="text-sm text-white/80">
+                      <label className="text-sm gap-2 flex text-gray-200">
                         개인정보 수집 및 이용에 동의합니다. 
                         <button 
                           type="button" 

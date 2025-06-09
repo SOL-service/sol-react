@@ -8,10 +8,9 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-blue-400">SOL</h3>
+            <h3 className="text-2xl font-bold">SOL<br />COMMUNICATIONS</h3>
             <p className="text-gray-400">
-              전문성과 신뢰를 바탕으로<br />
-              최고의 서비스를 제공합니다
+              원스톱 마케팅 솔루션
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
