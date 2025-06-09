@@ -616,7 +616,7 @@ const hasMoreItems = visibleItemCount < filteredItems.length;
                     alt={selectedItem.title}
                     className="w-full rounded-lg mb-6 transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
                     <span className="text-white text-lg font-medium">클릭하여 확대</span>
                   </div>
                 </div>
@@ -631,7 +631,7 @@ const hasMoreItems = visibleItemCount < filteredItems.length;
                   >
                     <div className="relative max-w-6xl w-full">
                       <button 
-                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-colors duration-300"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-20 hover:bg-white/30 text-white p-2 rounded-full transition-colors duration-300"
                         onClick={prevImage}
                       >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -646,7 +646,7 @@ const hasMoreItems = visibleItemCount < filteredItems.length;
                       />
                       
                       <button 
-                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-colors duration-300"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-20 hover:bg-white/30 text-white p-2 rounded-full transition-colors duration-300"
                         onClick={nextImage}
                       >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -655,7 +655,7 @@ const hasMoreItems = visibleItemCount < filteredItems.length;
                       </button>
 
                       <button 
-                        className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-colors duration-300"
+                        className="absolute top-4 right-4 bg-white bg-opacity-20 hover:bg-white text-white p-2 rounded-full transition-colors duration-300"
                         onClick={toggleExpandedView}
                       >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -682,7 +682,7 @@ const hasMoreItems = visibleItemCount < filteredItems.length;
                         }`}
                       />
                       <div 
-                        className={`absolute inset-0 bg-black/20 rounded-lg transition-opacity duration-300 ${
+                        className={`absolute inset-0 bg-black bg-opacity-20 rounded-lg transition-opacity duration-300 ${
                           selectedImageIndex === index ? 'opacity-0' : ''
                         }`}
                       />
