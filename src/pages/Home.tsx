@@ -159,10 +159,10 @@ const Home: React.FC = () => {
             />
           </div>
           <div className="container mx-auto px-4 relative z-20">
-            <div className="max-w-3xl mx-auto text-center text-white">
-              <h1 className="text-5xl font-bold mb-6">" For Your Success "<br/>with Agency & Marketing</h1>
-              <p className="text-xl mb-8">전국 모든 행사 기획부터 섭외까지 한방에 해결!<br/>분야별 전문 모델부터 스탭까지</p>
-              <div className="flex justify-center space-x-4">
+            <div className="max-w-4xl mx-auto text-left text-white">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-6" style={{ lineHeight: '1.3' }}>전국 모든 행사 기획부터 섭외까지 한방에 해결!<br/>분야별 전문 모델부터 스탭까지</h1>
+              {/* <p className="text-xl mb-8">전국 모든 행사 기획부터 섭외까지 한방에 해결!<br/>분야별 전문 모델부터 스탭까지</p> */}
+              <div className="flex justify-start space-x-4">
                 <button className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition duration-300">
                   견적문의
                 </button>
@@ -174,35 +174,8 @@ const Home: React.FC = () => {
           </div>
         </section>
 
-        {/* Management Section */}
-        <section className="py-20 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold mb-6">연락 한 번으로 기획부터 제작, 물자 렌탈, 운영 인력 배치까지</h2>
-                <p className="text-gray-600 mb-6">
-                  '고객의 니즈를 빠르게 파악하는 매년 꾸준히 우상향하는 기업'
-                </p>
-                <p className="text-gray-600">
-                  10년 이상의 전문성을 바탕으로<br/>
-                  '원스톱' 프로모션 서비스의 편리함과 합리적인 견적으로<br/>
-                  어떠한 상황에서도 우수한 결과를 도출할 수 있는 유연성을<br/>
-                  제공하여 클라이언트의 성공을 이끌어 드립니다.
-                </p>
-              </div>
-              <div className="relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80" 
-                  alt="Business Meeting" 
-                  className="rounded-lg shadow-xl"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Features Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">당신의 성공을 위한 솔루션</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -309,6 +282,33 @@ const Home: React.FC = () => {
                     <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#셀럽 & 인플루언서 초청 행사</span>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Management Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl font-bold mb-6">연락 한 번으로 기획부터 제작, 물자 렌탈, 운영 인력 배치까지</h2>
+                <p className="text-gray-600 mb-6">
+                  '고객의 니즈를 빠르게 파악하는 매년 꾸준히 우상향하는 기업'
+                </p>
+                <p className="text-gray-600">
+                  10년 이상의 전문성을 바탕으로<br/>
+                  '원스톱' 프로모션 서비스의 편리함과 합리적인 견적으로<br/>
+                  어떠한 상황에서도 우수한 결과를 도출할 수 있는 유연성을<br/>
+                  제공하여 클라이언트의 성공을 이끌어 드립니다.
+                </p>
+              </div>
+              <div className="relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80" 
+                  alt="Business Meeting" 
+                  className="rounded-lg shadow-xl"
+                />
               </div>
             </div>
           </div>
@@ -499,63 +499,62 @@ const Home: React.FC = () => {
             <h2 className="text-3xl font-bold text-center mb-12">함께하는 파트너사</h2>
             
             <div className="relative max-w-6xl mx-auto">
-              {/* Previous Button */}
-              <button 
-                className="absolute left-0 top-1/2 -translate-y-1/2 -mt-3 z-10 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all duration-200"
-                onClick={prevSlide}
-              >
-                <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-
-              {/* Slider Container */}
-              <div className="overflow-hidden mx-12">
-                <div 
-                  className="flex transition-transform duration-500 ease-in-out"
-                  style={{ transform: `translateX(-${currentSlide * (100 / slidesVisible)}%)` }}
+                {/* Previous Button */}
+                <button 
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -mt-3 z-10 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all duration-200"
+                  onClick={prevSlide}
                 >
-                  {clients.map((client, index) => (
-                    <div 
-                      key={index} 
-                      style={{ flex: `0 0 ${100 / slidesVisible}%` }} 
-                      className="px-4"
-                    >
-                      <div className="bg-gray-50 rounded-lg p-6 h-32 flex items-center justify-center">
-                        <img 
-                          src={client.logo} 
-                          alt={client.name} 
-                          className="max-h-20 max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                        />
+                  <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                {/* Slider Container */}
+                <div className="overflow-hidden mx-2 sm:mx-4 md:mx-12">
+                  <div 
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{ transform: `translateX(-${currentSlide * 50}%)` }}
+                  >
+                    {clients.map((client, index) => (
+                      <div 
+                        key={index} 
+                        className="px-2 sm:px-4 w-1/2 sm:w-1/4 flex-shrink-0"
+                      >
+                        <div className="bg-gray-50 rounded-lg p-4 sm:p-6 h-20 sm:h-32 flex items-center justify-center">
+                          <img 
+                            src={client.logo} 
+                            alt={client.name} 
+                            className="max-h-12 sm:max-h-20 max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                          />
+                        </div>
                       </div>
-                    </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Next Button */}
+                <button 
+                  className="absolute right-0 top-1/2 -translate-y-1/2 -mt-3 z-10 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all duration-200"
+                  onClick={nextSlide}
+                >
+                  <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+
+                {/* Dots Navigation */}
+                <div className="flex justify-center mt-8 space-x-2">
+                  {Array.from({ length: Math.ceil(clients.length / 2) }).map((_, index) => (
+                    <button
+                      key={index}
+                      className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                        currentSlide === index ? 'bg-blue-600 w-4' : 'bg-gray-300'
+                      }`}
+                      onClick={() => goToSlide(index)}
+                    />
                   ))}
                 </div>
-              </div>
-
-              {/* Next Button */}
-              <button 
-                className="absolute right-0 top-1/2 -translate-y-1/2 -mt-3 z-10 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all duration-200"
-                onClick={nextSlide}
-              >
-                <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-
-              {/* Dots Navigation */}
-              <div className="flex justify-center mt-8 space-x-2">
-                {Array.from({ length: Math.ceil(clients.length / slidesVisible) }).map((_, index) => (
-                  <button
-                    key={index}
-                    className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                      currentSlide === index ? 'bg-blue-600 w-4' : 'bg-gray-300'
-                    }`}
-                    onClick={() => goToSlide(index)}
-                  />
-                ))}
-              </div>
-            </div>
+              </div> 
           </div>
         </section>
 
