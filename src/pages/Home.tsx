@@ -659,7 +659,8 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
             <img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+              // src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+              src="/IMG/item/partner_2.jpg"
               alt="Contact Background" 
               className="w-full h-full object-cover"
             />
