@@ -1,8 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 
 const Business: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'planning' | 'staffing'>('planning');
+
+  const navigate = useNavigate();
+
+    const handleContactClick = () => {
+    navigate('/');
+    // 페이지 이동 후 약간의 지연을 두고 스크롤 실행
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact-section');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
+
+    const navigateToPortfolio = () => {
+    navigate('/portfolio');
+    // 페이지 이동 후 상단으로 스크롤
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -12,7 +35,8 @@ const Business: React.FC = () => {
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
             <img 
-              src="https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&q=80"
+              // src="https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&q=80"
+              src="/IMG/item/solution_4.jpeg"
               alt="Hero Background" 
               className="w-full h-full object-cover"
             />
@@ -28,24 +52,26 @@ const Business: React.FC = () => {
         {/* Features Section */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
+            {/* <div className="grid md:grid-cols-2 gap-12 items-center mb-12"> */}
+            <div className="grid gap-12 items-center mb-12">
               <div>
                 <h2 className="text-3xl font-bold mb-8">체계적인 시스템</h2>
                 <p className="text-gray-600 mb-8">체계적인 중간보고 시스템과 현장 관리로 마케팅 목표를 달성하며, 데이터 기반의 업무 평가를 통해 최적화된 인력으로 최상의 서비스를 제공합니다.</p>
               </div>
-              <div className="relative">
+              {/* <div className="relative">
                 <img 
                   src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
                   alt="System Overview" 
                   className="rounded-lg shadow-xl transform hover:scale-105 transition duration-500"
                 />
-              </div>
+              </div> */}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="bg-white p-8 rounded-lg shadow-lg group">
                 <div className="relative overflow-hidden rounded-lg mb-6">
                   <img 
-                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+                    // src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+                    src="/IMG/item/partner_1.jpg"
                     alt="Reasonable Price" 
                     className="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500"
                   />
@@ -66,7 +92,8 @@ const Business: React.FC = () => {
               <div className="bg-white p-8 rounded-lg shadow-lg group">
                 <div className="relative overflow-hidden rounded-lg mb-6">
                   <img 
-                    src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80"
+                    // src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80"
+                    src="/IMG/item/solution_2.jpeg"
                     alt="Expertise" 
                     className="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500"
                   />
@@ -91,7 +118,8 @@ const Business: React.FC = () => {
               <div className="bg-white p-8 rounded-lg shadow-lg group">
                 <div className="relative overflow-hidden rounded-lg mb-6">
                   <img 
-                    src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80"
+                    // src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80"
+                    src="/IMG/item/solution_4.jpeg"
                     alt="Human Resource Management" 
                     className="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500"
                   />
@@ -116,7 +144,8 @@ const Business: React.FC = () => {
               <div className="bg-white p-8 rounded-lg shadow-lg group">
                 <div className="relative overflow-hidden rounded-lg mb-6">
                   <img 
-                    src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80"
+                    // src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80"
+                    src="/IMG/item/solution_1.jpeg"
                     alt="Satisfaction" 
                     className="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500"
                   />
@@ -147,7 +176,8 @@ const Business: React.FC = () => {
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-black bg-opacity-20 z-10"></div>
             <img 
-              src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&q=80"
+              // src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&q=80"
+              src="/IMG/item/business_1.png"
               alt="FAQ Background" 
               className="w-full h-full object-cover"
             />
@@ -200,32 +230,43 @@ const Business: React.FC = () => {
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
+              <div className="grid gap-12 items-center mb-12">
                 <div>
                   <h2 className="text-3xl font-bold mb-8">운영 프로세스</h2>
                   <p className="text-gray-600">
                     체계적인 프로세스와 전문적인 팀으로 구성되어 있어, 모든 프로젝트에 최적화된 인력을 배치할 수 있습니다.
                   </p>
                 </div>
-                <div className="relative">
+                {/* <div className="relative">
                   <img 
-                    src="https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&q=80"
+                    // src="https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&q=80"
+                    src="/IMG/item/business_2.png"
                     alt="Process Overview" 
                     className="rounded-lg shadow-xl transform hover:scale-105 transition duration-500"
                   />
-                </div>
+                </div> */}
               </div>
 
               {/* Toggle Buttons */}
               <div className="flex justify-center mb-12">
                 <div className="bg-gray-100 p-1 rounded-lg inline-flex">
                   <button 
-                    className="px-6 py-2 rounded-md font-medium transition-all duration-200 bg-blue-600 text-white"
+                    className={`px-6 py-2 rounded-md font-medium transition-all duration-200 ${
+                      activeTab === 'planning' 
+                        ? 'bg-blue-600 text-white' 
+                        : 'text-gray-600 hover:text-blue-600'
+                    }`}
+                    onClick={() => setActiveTab('planning')}
                   >
                     기획 및 운영
                   </button>
                   <button 
-                    className="px-6 py-2 rounded-md font-medium transition-all duration-200 text-gray-600 hover:text-rose-500"
+                    className={`px-6 py-2 rounded-md font-medium transition-all duration-200 ${
+                      activeTab === 'staffing' 
+                        ? 'bg-red-600 text-white' 
+                        : 'text-gray-600 hover:text-red-600'
+                    }`}
+                    onClick={() => setActiveTab('staffing')}
                   >
                     인력 운영
                   </button>
@@ -233,178 +274,323 @@ const Business: React.FC = () => {
               </div>
 
               {/* Planning Process Content */}
-              <div className="space-y-12 relative">
-                {/* 수직 연결선 */}
-                <div className="absolute left-[23px] top-[48px] w-0.5 h-[calc(100%-72px)] bg-gray-200"></div>
+              {activeTab === 'planning' && (
+                <div className="space-y-12 relative">
+                  {/* 수직 연결선 */}
+                  <div className="absolute left-[23px] top-[48px] w-0.5 h-[calc(100%-72px)] bg-gray-200"></div>
 
-                {/* Step 1 */}
-                <div className="flex items-start relative">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
-                    1
+                  {/* Step 1 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      1
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        계약체결
+                      </h3>
+                      <p className="text-gray-600 mb-4">홈페이지 또는 전화로 상담을 신청합니다.</p>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>의뢰 접수</li>
+                      </ul>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 flex items-center">
-                      <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      계약체결
-                    </h3>
-                    <p className="text-gray-600 mb-4">홈페이지 또는 전화로 상담을 신청합니다.</p>
-                    <ul className="list-disc list-inside text-gray-600">
-                      <li>의뢰 접수</li>
-                    </ul>
+
+                  {/* Step 2 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      2
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                        브랜드분석
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>브랜드 및 행사내용 분석</li>
+                        <li>기획 컨셉 기준 정립</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      3
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        현장 미팅
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>현장 사전 답사</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 4 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      4
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        1차 제안
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>1차 운영안 제시</li>
+                        <li>필요업체 리스트 정리</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 5 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      5
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                        </svg>
+                        전반적 협의
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>행사진행방식</li>
+                        <li>현장 디자인 구체화</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 6 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      6
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        2차 제안
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>회의를 바탕으로 만들어진 2차 운영안 제시</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 7 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      7
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        현장에 맞는 운영안 성립
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>최종 운영안 정립</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 8 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      8
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        현장운영
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>포지션별 담당자 배치 후 진행상황, 마감정리 보고</li>
+                        <li>담당자와 소통후 피드백 반영</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 9 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      9
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        결과보고
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>행사 종료 후 보고서 작성 보고</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
+              )}
 
-                {/* Step 2 */}
-                <div className="flex items-start relative">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
-                    2
+              {/* Staffing Process Content */}
+              {activeTab === 'staffing' && (
+                <div className="space-y-12 relative">
+                  {/* 수직 연결선 */}
+                  <div className="absolute left-[23px] top-[48px] w-0.5 h-[calc(100%-72px)] bg-gray-200"></div>
+
+                  {/* Step 1 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      1
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        인력 요구사항 분석
+                      </h3>
+                      <p className="text-gray-600 mb-4">행사 규모와 성격에 맞는 인력 요구사항을 분석합니다.</p>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>필요 인력 수량 및 조건 파악</li>
+                        <li>행사 특성에 맞는 인력 선별 기준 설정</li>
+                      </ul>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 flex items-center">
-                      <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                      </svg>
-                      브랜드분석
-                    </h3>
-                    <ul className="list-disc list-inside text-gray-600">
-                      <li>브랜드 및 행사내용 분석</li>
-                      <li>기획 컨셉 기준 정립</li>
-                    </ul>
+
+                  {/* Step 2 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      2
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        인력 풀 검색
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>SOL DB에서 적합한 인력 검색</li>
+                        <li>외모, 서비스 마인드, 업무 능력 기준 선별</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      3
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        인력 확정
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>최종 인력 선정 및 확정</li>
+                        <li>계약 조건 협의 및 서명</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 4 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      4
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        업무 교육
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>행사별 맞춤 업무 교육 진행</li>
+                        <li>서비스 매뉴얼 및 행사 진행 방식 교육</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 5 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      5
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        현장 배치
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>행사 현장에 인력 배치</li>
+                        <li>포지션별 담당자 지정 및 업무 분담</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 6 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      6
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        실시간 관리
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>현장 상황 실시간 모니터링</li>
+                        <li>인력 컨디션 및 업무 수행도 관리</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 7 */}
+                  <div className="flex items-start relative">
+                    <div className="flex-shrink-0 w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
+                      7
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold mb-4 flex items-center">
+                        <svg className="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        업무 평가
+                      </h3>
+                      <ul className="list-disc list-inside text-gray-600">
+                        <li>행사 종료 후 인력별 업무 수행도 평가</li>
+                        <li>개선점 피드백 및 향후 활용 방안 검토</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-
-                {/* Step 3 */}
-                <div className="flex items-start relative">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
-                    3
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 flex items-center">
-                      <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      현장 미팅
-                    </h3>
-                    <ul className="list-disc list-inside text-gray-600">
-                      <li>현장 사전 답사</li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Step 4 */}
-                <div className="flex items-start relative">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
-                    4
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 flex items-center">
-                      <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                      1차 제안
-                    </h3>
-                    <ul className="list-disc list-inside text-gray-600">
-                      <li>1차 운영안 제시</li>
-                      <li>필요업체 리스트 정리</li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Step 5 */}
-                <div className="flex items-start relative">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
-                    5
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 flex items-center">
-                      <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                      </svg>
-                      전반적 협의
-                    </h3>
-                    <ul className="list-disc list-inside text-gray-600">
-                      <li>행사진행방식</li>
-                      <li>현장 디자인 구체화</li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Step 6 */}
-                <div className="flex items-start relative">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
-                    6
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 flex items-center">
-                      <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      2차 제안
-                    </h3>
-                    <ul className="list-disc list-inside text-gray-600">
-                      <li>회의를 바탕으로 만들어진 2차 운영안 제시</li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Step 7 */}
-                <div className="flex items-start relative">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
-                    7
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 flex items-center">
-                      <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      현장에 맞는 운영안 성립
-                    </h3>
-                    <ul className="list-disc list-inside text-gray-600">
-                      <li>최종 운영안 정립</li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Step 8 */}
-                <div className="flex items-start relative">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
-                    8
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 flex items-center">
-                      <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      현장운영
-                    </h3>
-                    <ul className="list-disc list-inside text-gray-600">
-                      <li>포지션별 담당자 배치 후 진행상황, 마감정리 보고</li>
-                      <li>담당자와 소통후 피드백 반영</li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Step 9 */}
-                <div className="flex items-start relative">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 relative z-10">
-                    9
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 flex items-center">
-                      <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                      결과보고
-                    </h3>
-                    <ul className="list-disc list-inside text-gray-600">
-                      <li>행사 종료 후 보고서 작성 보고</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </section>
@@ -414,7 +600,8 @@ const Business: React.FC = () => {
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
             <img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+              // src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+              src="/IMG/item/business_2.png"
               alt="CTA Background" 
               className="w-full h-full object-cover"
             />
@@ -422,9 +609,16 @@ const Business: React.FC = () => {
           <div className="container mx-auto px-4 text-center relative z-20">
             <h2 className="text-3xl font-bold mb-8 text-white">체계적인 시스템! 성공적인 행사!</h2>
             <p className="text-xl text-white mb-8">행사 종료후 인원별 업무능력 평가진행, 선별된 인원으로 최고의 퍼포먼스 제공을 약속드립니다.</p>
-            <button className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-white/90">
+            <div className="flex justify-center space-x-4">
+            <button
+              onClick={handleContactClick}
+              className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-white/90">
               상담 신청하기
             </button>
+            <button className="border border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-blue-600 transition duration-300" onClick={() => navigateToPortfolio()}>
+                  더 알아보기
+              </button>
+              </div>
           </div>
         </section>
       </main>

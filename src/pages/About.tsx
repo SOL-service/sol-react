@@ -1,9 +1,28 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 
 const About: React.FC = () => {
   const [showAllHistory, setShowAllHistory] = useState(false);
+  const navigate = useNavigate();
+
+    const handleContactClick = () => {
+    navigate('/');
+    // 페이지 이동 후 약간의 지연을 두고 스크롤 실행
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact-section');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
+    const navigateToPortfolio = () => {
+    navigate('/business');
+    // 페이지 이동 후 상단으로 스크롤
+    window.scrollTo(0, 0);
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -14,7 +33,8 @@ const About: React.FC = () => {
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
             <img 
-              src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80"
+              // src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80"
+              src="/IMG/item/solution_4.jpeg"
               alt="Hero Background" 
               className="w-full h-full object-cover"
             />
@@ -32,7 +52,8 @@ const About: React.FC = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="prose prose-lg mx-auto">
-                <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
+                {/* <div className="grid md:grid-cols-2 gap-12 items-center mb-12"> */}
+                <div className="grid gap-12 items-center mb-12">
                   <div>
                     <h2 className="text-3xl font-bold mb-8">비전과 미션</h2>
                     <p className="text-gray-600 mb-6">
@@ -43,13 +64,13 @@ const About: React.FC = () => {
                       체계적인 인력 관리 시스템과 검증된 전문 인력 풀을 보유하고 있으며, 고객 중심의 서비스로 신뢰할 수 있는 파트너가 되겠습니다.
                     </p>
                   </div>
-                  <div className="relative">
+                  {/* <div className="relative">
                     <img 
                       src="https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&q=80"
                       alt="Vision and Mission" 
                       className="rounded-lg shadow-xl transform hover:scale-105 transition duration-500"
                     />
-                  </div>
+                  </div> */}
                 </div>
 
                 <h2 className="text-3xl font-bold mb-8 mt-12">핵심 가치</h2>
@@ -57,7 +78,8 @@ const About: React.FC = () => {
                   <div className="bg-white p-6 rounded-lg shadow-lg group">
                     <div className="relative overflow-hidden rounded-lg mb-4">
                       <img 
-                        src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
+                        // src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
+                        src="/IMG/item/partner_1.jpg"
                         alt="Professional" 
                         className="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500"
                       />
@@ -68,7 +90,8 @@ const About: React.FC = () => {
                   <div className="bg-white p-6 rounded-lg shadow-lg group">
                     <div className="relative overflow-hidden rounded-lg mb-4">
                       <img 
-                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+                        // src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+                        src="/IMG/item/solution_3.png"
                         alt="Human Resource Management" 
                         className="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500"
                       />
@@ -79,7 +102,8 @@ const About: React.FC = () => {
                   <div className="bg-white p-6 rounded-lg shadow-lg group">
                     <div className="relative overflow-hidden rounded-lg mb-4">
                       <img 
-                        src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80"
+                        // src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80"
+                        src="/IMG/item/solution_2.jpeg"
                         alt="Convenient" 
                         className="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500"
                       />
@@ -90,7 +114,8 @@ const About: React.FC = () => {
                   <div className="bg-white p-6 rounded-lg shadow-lg group">
                     <div className="relative overflow-hidden rounded-lg mb-4">
                       <img 
-                        src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80"
+                        // src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80"
+                        src="/IMG/item/solution_4.jpeg"
                         alt="Valuable" 
                         className="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500"
                       />
@@ -178,7 +203,8 @@ const About: React.FC = () => {
                   </div>
                   <div className="relative">
                     <img 
-                      src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80"
+                      // src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80"
+                      src="/IMG/item/about_1.png"
                       alt="History" 
                       className="rounded-lg shadow-xl transform hover:scale-105 transition duration-500"
                     />
@@ -284,7 +310,8 @@ const About: React.FC = () => {
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
             <img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+              // src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+              src="/IMG/item/about_2.png"
               alt="CTA Background" 
               className="w-full h-full object-cover"
             />
@@ -294,10 +321,12 @@ const About: React.FC = () => {
               <h1 className="text-5xl font-bold mb-6">지금 바로 견적 상담해 보세요!</h1>
               <p className="text-xl mb-8">차별화된 원스톱 서비스를 지금 경험해 보세요 <br/>최고의 서비스를 제공해드립니다</p>
               <div className="flex justify-center space-x-4">
-                <button className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition duration-300">
+                <button
+                  onClick={handleContactClick}
+                  className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition duration-300">
                   견적문의
                 </button>
-                <button className="border border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-blue-600 transition duration-300">
+                <button className="border border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-blue-600 transition duration-300" onClick={() => navigateToPortfolio()}>
                   더 알아보기
                 </button>
               </div>

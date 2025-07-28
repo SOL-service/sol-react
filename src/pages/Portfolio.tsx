@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 
@@ -455,6 +456,7 @@ const Portfolio: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
   const [isExpandedView, setIsExpandedView] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const filteredItems = portfolioItems.filter(
   item => selectedCategory === 'all' || item.category === selectedCategory
@@ -500,6 +502,17 @@ const hasMoreItems = visibleItemCount < filteredItems.length;
         prev === selectedItem.images.length - 1 ? 0 : prev + 1
       );
     }
+  };
+
+  const handleContactClick = () => {
+    navigate('/');
+    // 페이지 이동 후 약간의 지연을 두고 스크롤 실행
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact-section');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   return (
@@ -712,7 +725,8 @@ const hasMoreItems = visibleItemCount < filteredItems.length;
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-black bg-opacity-40 z-10" />
             <img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+              // src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+              src="/IMG/item/business_2.png"
               alt="Portfolio CTA Background" 
               className="w-full h-full object-cover"
             />
@@ -720,7 +734,10 @@ const hasMoreItems = visibleItemCount < filteredItems.length;
           <div className="container mx-auto px-4 relative z-20 text-center">
             <h2 className="text-3xl font-bold mb-8">지금 바로 SOL과 함께 성공적인 프로젝트를 시작하세요</h2>
             <p className="text-xl text-white mb-8">수많은 성공 사례로 검증된 솔루션과 노하우로, 귀사의 비전을 현실로 만들어드리겠습니다</p>
-            <button className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-white/90">
+            <button 
+              onClick={handleContactClick}
+              className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-white/90"
+            >
               상담 신청하기
             </button>
           </div>

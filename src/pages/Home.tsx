@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 
@@ -30,8 +31,36 @@ const styles = {
     maxHeight: '500px',
     opacity: '1',
     transform: 'translateY(0)',
+  },
+  heroZoom: {
+    animation: 'heroZoom 8s ease-in-out infinite',
   }
 };
+
+// CSS 키프레임을 동적으로 추가
+if (typeof document !== 'undefined') {
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes heroZoom {
+      0% {
+        transform: scale(1) translateX(0);
+      }
+      25% {
+        transform: scale(1.05) translateX(-10px);
+      }
+      50% {
+        transform: scale(1.1) translateX(0);
+      }
+      75% {
+        transform: scale(1.05) translateX(10px);
+      }
+      100% {
+        transform: scale(1) translateX(0);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+}
 
 const Home: React.FC = () => {
   const [openFaqs, setOpenFaqs] = useState<{ [key: number]: boolean }>({});
@@ -44,7 +73,7 @@ const Home: React.FC = () => {
     userNote: '',
     privacyAgreement: false
   });
-  const slidesVisible = 4;
+  const navigate = useNavigate();
 
   const clients = [
     { name: '신세계', logo: '/IMG/clientsLog/신세계.png' },
@@ -91,8 +120,11 @@ const Home: React.FC = () => {
     { name: '아모레퍼시픽', logo: '/IMG/clientsLog/아모레퍼시픽.png' },
   ];
 
+  // 총 슬라이드 수 계산 (모바일 기준 2개씩, 데스크탑에서는 4개씩 보이지만 계산은 2개 기준)
+  const totalSlides = Math.ceil(clients.length / 2);
+
   const nextSlide = () => {
-    if (currentSlide < Math.ceil(clients.length / slidesVisible) - 1) {
+    if (currentSlide < totalSlides - 1) {
       setCurrentSlide(prev => prev + 1);
     } else {
       setCurrentSlide(0);
@@ -103,7 +135,7 @@ const Home: React.FC = () => {
     if (currentSlide > 0) {
       setCurrentSlide(prev => prev - 1);
     } else {
-      setCurrentSlide(Math.ceil(clients.length / slidesVisible) - 1);
+      setCurrentSlide(totalSlides - 1);
     }
   };
 
@@ -144,6 +176,19 @@ const Home: React.FC = () => {
     }
   };
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact-section');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const navigateToPortfolio = () => {
+    navigate('/portfolio');
+    // 페이지 이동 후 상단으로 스크롤
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -153,9 +198,13 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
             <img 
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
+              // src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
+              src="/IMG/item/main_1.jpeg"
               alt="Hero Background" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover animate-hero-zoom"
+              style={{
+                animation: 'heroZoom 8s ease-in-out infinite'
+              }}
             />
           </div>
           <div className="container mx-auto px-4 relative z-20">
@@ -163,10 +212,10 @@ const Home: React.FC = () => {
               <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-6" style={{ lineHeight: '1.3' }}>전국 모든 행사 기획부터 섭외까지 한방에 해결!<br/>분야별 전문 모델부터 스탭까지</h1>
               {/* <p className="text-xl mb-8">전국 모든 행사 기획부터 섭외까지 한방에 해결!<br/>분야별 전문 모델부터 스탭까지</p> */}
               <div className="flex justify-start space-x-4">
-                <button className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition duration-300">
+                <button className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition duration-300" onClick={scrollToContact}>
                   견적문의
                 </button>
-                <button className="border border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-blue-600 transition duration-300">
+                <button className="border border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-blue-600 transition duration-300" onClick={() => navigate('/about')}>
                   더 알아보기
                 </button>
               </div>
@@ -180,106 +229,136 @@ const Home: React.FC = () => {
             <h2 className="text-3xl font-bold text-center mb-12">당신의 성공을 위한 솔루션</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
               {/* Feature 1 */}
-              <div className="group">
-                <div className="relative overflow-hidden rounded-lg mb-6">
+              <div className="group rounded-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden cursor-pointer" onClick={navigateToPortfolio}>
+                <div className="relative overflow-hidden rounded-t-xl">
                   <img 
-                    src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80" 
+                    src="/IMG/item/solution_1.jpeg" 
                     alt="기획 및 연출" 
-                    className="w-full object-cover transform group-hover:scale-110 transition duration-500"
+                    className="w-full object-cover transform group-hover:scale-110 transition duration-700"
                     style={styles.aspectRatio43}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full">
+                      <span className="text-gray-800 font-semibold">자세히 보기</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold mb-4">기획 및 연출</h2>
-                  <p className="text-gray-600 mb-4">전문적인 기획력과 차별화된 연출로 성공적인 행사 진행</p>
+                <div className="p-6 text-center">
+                  <h2 className="text-2xl font-bold mb-4 group-hover:text-blue-600 transition-colors duration-300">기획 및 연출</h2>
+                  <p className="text-gray-600 mb-4 group-hover:text-gray-800 transition-colors duration-300">전문적인 기획력과 차별화된 연출로 성공적인 행사 진행</p>
                   <div className="flex justify-center flex-wrap gap-2">
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#행사용품 렌탈</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#시스템</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#인력</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#디자인</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#행사용품 렌탈</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#시스템</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#인력</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#디자인</span>
                   </div>
                 </div>
               </div>
 
               {/* Feature 2 */}
-              <div className="group">
-                <div className="relative overflow-hidden rounded-lg mb-6">
+              <div className="group rounded-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden cursor-pointer" onClick={navigateToPortfolio}>
+                <div className="relative overflow-hidden rounded-t-xl">
                   <img 
-                    src="https://images.unsplash.com/photo-1560523159-6b681a1e1852?auto=format&fit=crop&q=80" 
+                    src="/IMG/item/solution_2.jpeg" 
                     alt="BTL 프로모션" 
-                    className="w-full object-cover transform group-hover:scale-110 transition duration-500"
+                    className="w-full object-cover transform group-hover:scale-110 transition duration-700"
                     style={styles.aspectRatio43}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full">
+                      <span className="text-gray-800 font-semibold">자세히 보기</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold mb-4">BTL 프로모션</h2>
-                  <p className="text-gray-600 mb-4">현장 프로모션부터 대규모 행사까지 차별화된 마케팅 솔루션 제공</p>
+                <div className="p-6 text-center">
+                  <h2 className="text-2xl font-bold mb-4 group-hover:text-blue-600 transition-colors duration-300">BTL 프로모션</h2>
+                  <p className="text-gray-600 mb-4 group-hover:text-gray-800 transition-colors duration-300">현장 프로모션부터 대규모 행사까지 차별화된 마케팅 솔루션 제공</p>
                   <div className="flex justify-center flex-wrap gap-2">
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#팝업 & 백화점 행사</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#페스티벌</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#전시 & 세미나</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#팝업 & 백화점 행사</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#페스티벌</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#전시 & 세미나</span>
                   </div>
                 </div>
               </div>
 
               {/* Feature 3 */}
-              <div className="group">
-                <div className="relative overflow-hidden rounded-lg mb-6">
+              <div className="group rounded-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden cursor-pointer" onClick={navigateToPortfolio}>
+                <div className="relative overflow-hidden rounded-t-xl">
                   <img 
-                    src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&q=80" 
+                    src="/IMG/item/solution_3.png" 
                     alt="아웃소싱" 
-                    className="w-full object-cover transform group-hover:scale-110 transition duration-500"
+                    className="w-full object-cover transform group-hover:scale-110 transition duration-700"
                     style={styles.aspectRatio43}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full">
+                      <span className="text-gray-800 font-semibold">자세히 보기</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold mb-4">아웃소싱</h2>
-                  <p className="text-gray-600 mb-4">전문성과 신뢰성을 바탕으로 한 맞춤형 인력 아웃소싱 서비스 제공</p>
+                <div className="p-6 text-center">
+                  <h2 className="text-2xl font-bold mb-4 group-hover:text-blue-600 transition-colors duration-300">아웃소싱</h2>
+                  <p className="text-gray-600 mb-4 group-hover:text-gray-800 transition-colors duration-300">전문성과 신뢰성을 바탕으로 한 맞춤형 인력 아웃소싱 서비스 제공</p>
                   <div className="flex justify-center flex-wrap gap-2">
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#명품관 서비스가드</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#기업 업무 보조인력</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#명품관 서비스가드</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#기업 업무 보조인력</span>
                   </div>
                 </div>
               </div>
 
               {/* Feature 4 */}
-              <div className="group">
-                <div className="relative overflow-hidden rounded-lg mb-6">
+              <div className="group rounded-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden cursor-pointer" onClick={navigateToPortfolio}>
+                <div className="relative overflow-hidden rounded-t-xl">
                   <img 
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80" 
+                    src="/IMG/item/solution_4.jpeg" 
                     alt="전문 모델" 
-                    className="w-full object-cover transform group-hover:scale-110 transition duration-500"
+                    className="w-full object-cover transform group-hover:scale-110 transition duration-700"
                     style={styles.aspectRatio43}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full">
+                      <span className="text-gray-800 font-semibold">자세히 보기</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold mb-4">전문 모델</h2>
-                  <p className="text-gray-600 mb-4">패션쇼, 광고, 방송 등 다양한 분야의 전문 모델 매칭 서비스 제공</p>
+                <div className="p-6 text-center">
+                  <h2 className="text-2xl font-bold mb-4 group-hover:text-blue-600 transition-colors duration-300">전문 모델</h2>
+                  <p className="text-gray-600 mb-4 group-hover:text-gray-800 transition-colors duration-300">패션쇼, 광고, 방송 등 다양한 분야의 전문 모델 매칭 서비스 제공</p>
                   <div className="flex justify-center flex-wrap gap-2">
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#패션쇼</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#광고참여</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#영화 & 드라마</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#잡지촬영</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#패션쇼</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#광고참여</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#영화 & 드라마</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#잡지촬영</span>
                   </div>
                 </div>
               </div>
 
               {/* Feature 5 */}
-              <div className="group">
-                <div className="relative overflow-hidden rounded-lg mb-6">
+              <div className="group rounded-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden cursor-pointer" onClick={navigateToPortfolio}>
+                <div className="relative overflow-hidden rounded-t-xl">
                   <img 
                     src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&q=80" 
                     alt="인플루언서 마케팅" 
-                    className="w-full object-cover transform group-hover:scale-110 transition duration-500"
+                    className="w-full object-cover transform group-hover:scale-110 transition duration-700"
                     style={styles.aspectRatio43}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full">
+                      <span className="text-gray-800 font-semibold">자세히 보기</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold mb-4">인플루언서 마케팅</h2>
-                  <p className="text-gray-600 mb-4">소셜 미디어 영향력자와 함께하는 효과적인 브랜드 마케팅 솔루션 제공</p>
+                <div className="p-6 text-center">
+                  <h2 className="text-2xl font-bold mb-4 group-hover:text-blue-600 transition-colors duration-300">인플루언서 마케팅</h2>
+                  <p className="text-gray-600 mb-4 group-hover:text-gray-800 transition-colors duration-300">소셜 미디어 영향력자와 함께하는 효과적인 브랜드 마케팅 솔루션 제공</p>
                   <div className="flex justify-center flex-wrap gap-2">
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#SNS 마케팅</span>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#셀럽 & 인플루언서 초청 행사</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#SNS 마케팅</span>
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">#셀럽 & 인플루언서 초청 행사</span>
                   </div>
                 </div>
               </div>
@@ -305,7 +384,8 @@ const Home: React.FC = () => {
               </div>
               <div className="relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80" 
+                  // src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80" 
+                  src="/IMG/item/needs_1.jpeg" 
                   alt="Business Meeting" 
                   className="rounded-lg shadow-xl"
                 />
@@ -319,7 +399,8 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
             <img 
-              src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80"
+              // src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80"
+              src="/IMG/item/partner_2.jpg"
               alt="Management Background" 
               className="w-full h-full object-cover"
             />
@@ -330,27 +411,30 @@ const Home: React.FC = () => {
               폭넓고 세분화된 DB관리로 견적 그 이상의 현장니즈에 걸맞는 인원배치로 광고주의 만족과 깔끔한 현장분위기를 추구합니다.
             </p>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm p-8 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300">
+              <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm p-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300">
                 <img 
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
+                  // src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
+                  src="/IMG/item/partner_1.jpg"
                   alt="Professional Service" 
                   className="w-full h-48 object-cover rounded-lg mb-6"
                 />
                 <h3 className="text-xl font-bold text-white mb-4">전문적인 서비스</h3>
                 <p className="text-gray-200">각 분야 전문가들의 체계적인 관리로 최상의 서비스를 제공합니다.</p>
               </div>
-              <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm p-8 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300">
+              <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm p-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300">
                 <img 
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+                  // src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+                  src="/IMG/item/partner_3.jpg"
                   alt="Customized Solutions" 
                   className="w-full h-48 object-cover rounded-lg mb-6"
                 />
                 <h3 className="text-xl font-bold text-white mb-4">맞춤형 솔루션</h3>
                 <p className="text-gray-200">클라이언트의 니즈에 맞는 최적화된 솔루션을 제공합니다.</p>
               </div>
-              <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm p-8 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300">
+              <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm p-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300">
                 <img 
-                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80"
+                  // src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80"
+                  src="/IMG/item/partner_4.jpg"
                   alt="Reliable Partnership" 
                   className="w-full h-48 object-cover rounded-lg mb-6"
                 />
@@ -449,13 +533,17 @@ const Home: React.FC = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-black bg-opacity-60 p-8 rounded-lg backdrop-filter backdrop-blur-sm hover:bg-black hover:bg-opacity-70 transition-all duration-300">
-                <img 
+                {/* <img 
                   src="https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&q=80"
                   alt="Planning" 
                   className="w-full h-48 object-cover rounded-lg mb-6"
-                />
-                <h3 className="text-xl font-bold mb-4 text-white">어떤 상황에든 대처가능한 플랜이 있나요?</h3>
+                /> */}
+                <h3 className="text-xl font-bold mb-4 text-white">
+                  <span className="text-2xl font-bold text-blue-500">Q. </span>
+                  어떤 상황에든 대처가능한 플랜이 있나요?
+                </h3>
                 <p className="text-gray-300">
+                  <span className="text-2xl font-bold text-yellow-500">A. </span>
                   '걱정하지 마세요!'<br/>
                   전문 모델부터 스탭까지 다양한 인력풀 보유로<br/>
                   긴급 상황에도 즉시 대응이 가능합니다.
@@ -463,13 +551,17 @@ const Home: React.FC = () => {
               </div>
 
               <div className="bg-black bg-opacity-60 p-8 rounded-lg backdrop-filter backdrop-blur-sm hover:bg-black hover:bg-opacity-70 transition-all duration-300">
-                <img 
+                {/* <img 
                   src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&q=80"
                   alt="Professional Team" 
                   className="w-full h-48 object-cover rounded-lg mb-6"
-                />
-                <h3 className="text-xl font-bold mb-4 text-white">각 분야별 전문 인재, 선택지 제공 되나요?</h3>
+                /> */}
+                <h3 className="text-xl font-bold mb-4 text-white">
+                  <span className="text-2xl font-bold text-blue-500">Q. </span>
+                  각 분야별 전문 인재, 선택지 제공 되나요?
+                </h3>
                 <p className="text-gray-300">
+                  <span className="text-2xl font-bold text-yellow-500">A. </span>
                   '네, 물론입니다!'<br/>
                   패션쇼, 프로모션, 방송 등 각 분야별<br/>
                   전문 모델과 인재풀을 보유하고 있습니다.
@@ -477,13 +569,17 @@ const Home: React.FC = () => {
               </div>
 
               <div className="bg-black bg-opacity-60 p-8 rounded-lg backdrop-filter backdrop-blur-sm hover:bg-black hover:bg-opacity-70 transition-all duration-300">
-                <img 
+                {/* <img 
                   src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80"
                   alt="Management" 
                   className="w-full h-48 object-cover rounded-lg mb-6"
-                />
-                <h3 className="text-xl font-bold mb-4 text-white">지속적인 관리가 가능한가요?</h3>
+                /> */}
+                <h3 className="text-xl font-bold mb-4 text-white">
+                  <span className="text-2xl font-bold text-blue-500">Q. </span>
+                  지속적인 관리가 가능한가요?
+                </h3>
                 <p className="text-gray-300">
+                  <span className="text-2xl font-bold text-yellow-500">A. </span>
                   '네, 걱정마세요!'<br/>
                   전담 매니저가 배정되어 지속적인 관리와<br/>
                   피드백을 제공해 드립니다.
@@ -520,7 +616,7 @@ const Home: React.FC = () => {
                         key={index} 
                         className="px-2 sm:px-4 w-1/2 sm:w-1/4 flex-shrink-0"
                       >
-                        <div className="bg-gray-50 rounded-lg p-4 sm:p-6 h-20 sm:h-32 flex items-center justify-center">
+                        <div className="backdrop-blur-sm rounded-lg p-4 sm:p-6 h-20 sm:h-32 flex items-center justify-center">
                           <img 
                             src={client.logo} 
                             alt={client.name} 
@@ -544,7 +640,7 @@ const Home: React.FC = () => {
 
                 {/* Dots Navigation */}
                 <div className="flex justify-center mt-8 space-x-2">
-                  {Array.from({ length: Math.ceil(clients.length / 2) }).map((_, index) => (
+                  {Array.from({ length: totalSlides }).map((_, index) => (
                     <button
                       key={index}
                       className={`w-2 h-2 rounded-full transition-all duration-200 ${
@@ -559,7 +655,7 @@ const Home: React.FC = () => {
         </section>
 
         {/* Contact Section */}
-        <section className="bg-gray-100 py-20 relative overflow-hidden">
+        <section id="contact-section" className="bg-gray-100 py-20 relative overflow-hidden">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
             <img 

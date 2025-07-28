@@ -34,11 +34,11 @@ const Header: React.FC = () => {
           </div>
 
           {/* Desktop Contact Button */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* <div className="hidden md:flex items-center space-x-4">
             <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
               견적문의
             </button>
-          </div>
+          </div> */}
 
           {/* Mobile Menu Button */}
           <button 
@@ -102,9 +102,9 @@ const Header: React.FC = () => {
               >
                 포트폴리오
               </Link>
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 w-full">
+              {/* <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 w-full">
                 견적문의
-              </button>
+              </button> */}
             </nav>
           </div>
         )}
