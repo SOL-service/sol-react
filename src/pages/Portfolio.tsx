@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import { fetchAllPortfolioDataGrouped } from '../services/portfolioApi';
+import type { FolderGroupedData } from '../services/portfolioApi';
 
 interface PortfolioItem {
   id: number;
@@ -456,11 +458,149 @@ const Portfolio: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
   const [isExpandedView, setIsExpandedView] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [apiData, setApiData] = useState<FolderGroupedData | null>(null);
+  const hasCalledApi = useRef<boolean>(false);
   const navigate = useNavigate();
 
-  const filteredItems = portfolioItems.filter(
-  item => selectedCategory === 'all' || item.category === selectedCategory
-);
+  // 동적 카테고리 리스트
+  const menuList = [
+    'Promotion',
+    'Fashion_Show',
+    'Model',
+    'SNS_Marketing',
+    'Luxury_Shop_Guard',
+  ];
+
+  // 카테고리 매핑
+  const categoryMapping = {
+    'all': null, // 전체는 모든 카테고리
+    'planning': 'Fashion_Show',
+    'btl': 'Promotion',
+    'outsourcing': 'Luxury_Shop_Guard',
+    'model': 'Model',
+    'influencer': 'SNS_Marketing'
+  };
+
+  // 카테고리 한글 이름 매핑
+  const categoryKoreanNames = {
+    'Promotion': 'BTL 프로모션',
+    'Fashion_Show': '기획 및 연출',
+    'Model': '전문모델',
+    'SNS_Marketing': '인플루언서 마케팅',
+    'Luxury_Shop_Guard': '아웃소싱'
+  };
+
+  // 태그에서 카테고리를 한글로 변환하는 함수
+  const convertTagToKorean = (tag: string): string => {
+    // 카테고리인지 확인하고 한글로 변환
+    if (categoryKoreanNames[tag as keyof typeof categoryKoreanNames]) {
+      return categoryKoreanNames[tag as keyof typeof categoryKoreanNames];
+    }
+    // 카테고리가 아니면 원래 태그 반환
+    return tag;
+  };
+
+  // API 데이터로부터 포트폴리오 아이템 생성
+  const generatePortfolioItems = (folderGroupedResults: FolderGroupedData): PortfolioItem[] => {
+    const items: PortfolioItem[] = [];
+    let itemId = 1;
+
+    if (!folderGroupedResults) return [];
+
+    // 선택된 카테고리에 따라 데이터 필터링
+    const targetCategory = categoryMapping[selectedCategory as keyof typeof categoryMapping];
+    
+    if (selectedCategory === 'all') {
+      // 전체: 모든 카테고리의 mainImage를 가져옴
+      Object.entries(folderGroupedResults).forEach(([category, folders]) => {
+        Object.entries(folders).forEach(([folderName, folderData]) => {
+          if (folderData.mainImage) {
+            items.push({
+              id: itemId++,
+              category: category,
+              title: folderName,
+              description: `${category} 카테고리의 ${folderName} 프로젝트`,
+              image: folderData.mainImage,
+              images: [folderData.mainImage, ...folderData.subImages],
+              tags: [category, folderName]
+            });
+          }
+        });
+      });
+    } else if (targetCategory && folderGroupedResults[targetCategory]) {
+      // 특정 카테고리: 해당 카테고리의 mainImage만 가져옴
+      Object.entries(folderGroupedResults[targetCategory]).forEach(([folderName, folderData]) => {
+        if (folderData.mainImage) {
+          items.push({
+            id: itemId++,
+            category: selectedCategory,
+            title: folderName,
+            description: `${targetCategory} 카테고리의 ${folderName} 프로젝트`,
+            image: folderData.mainImage,
+            images: [folderData.mainImage, ...folderData.subImages],
+            tags: [targetCategory, folderName]
+          });
+        }
+      });
+    }
+
+    return items;
+  };
+
+  // API 데이터 가져오기
+  useEffect(() => {
+    // 이미 API를 호출했으면 중복 호출 방지
+    if (hasCalledApi.current || isLoading) {
+      return;
+    }
+
+    const fetchPortfolioData = async () => {
+      try {
+        hasCalledApi.current = true;
+        setIsLoading(true);
+        const folderGroupedResults = await fetchAllPortfolioDataGrouped(menuList);
+        
+        // API 데이터 저장
+        setApiData(folderGroupedResults);
+        
+        // 각 카테고리별 폴더 그룹화된 결과 확인
+        // Object.entries(folderGroupedResults).forEach(([category, folders]) => {
+        //   console.log(`\n=== ${category} 카테고리 ===`);
+          
+        //   Object.entries(folders).forEach(([folderName, folderData]) => {
+        //     console.log(`\n📁 폴더: ${folderName}`);
+        //     console.log(`   📍 경로: ${folderData.folderPath}`);
+        //     console.log(`   🖼️  메인 이미지: ${folderData.mainImage || '없음'}`);
+        //     console.log(`   🖼️  서브 이미지 개수: ${folderData.subImages.length}개`);
+        //     console.log(`   🖼️  서브 이미지들:`, folderData.subImages);
+        //   });
+          
+        //   console.log(`\n📊 ${category} 카테고리 총 폴더 수: ${Object.keys(folders).length}개`);
+        // });
+
+        
+        // 전체 통계
+        // const totalFolders = Object.values(folderGroupedResults).reduce((sum, folders) => sum + Object.keys(folders).length, 0);
+        // console.log(`\n📈 전체 포트폴리오 폴더 수: ${totalFolders}개`);
+        
+      } catch (error) {
+        console.error('포트폴리오 데이터 가져오기 실패:', error);
+        hasCalledApi.current = false; // 에러 발생 시 다시 호출 가능하도록
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPortfolioData();
+  }, []); // 빈 의존성 배열로 컴포넌트 마운트 시 한 번만 실행
+
+  // API 데이터로부터 동적 포트폴리오 아이템 생성
+  const dynamicPortfolioItems = apiData ? generatePortfolioItems(apiData) : portfolioItems;
+
+  const filteredItems = dynamicPortfolioItems.filter(
+    item => selectedCategory === 'all' || item.category === selectedCategory
+  );
 
 const filteredPortfolio = filteredItems.slice(0, visibleItemCount);
 
@@ -569,8 +709,9 @@ const hasMoreItems = visibleItemCount < filteredItems.length;
                   onClick={() => openModal(item)}
                 >
                   {/* Image */}
-                  <div className="aspect-w-16">
+                  <div className="aspect-w-16" style={{ height: '100%' }}>
                     <img 
+                      id="poi"
                       src={item.image} 
                       alt={item.title}
                       className="object-cover w-full h-full transform transition-transform duration-500 group-hover:scale-110"
@@ -579,7 +720,8 @@ const hasMoreItems = visibleItemCount < filteredItems.length;
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-black bg-opacity-30 hover:bg-opacity-60 flex flex-col justify-end p-6">
                     <h3 className="text-white text-xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-white text-opacity-90">{item.description}</p>
+                    {/* <p className="text-white text-opacity-90">{item.description}</p> */}
+                    <p className="text-white text-opacity-90"></p>
                   </div>
                 </div>
               ))}
@@ -628,9 +770,10 @@ const hasMoreItems = visibleItemCount < filteredItems.length;
                     src={selectedItem.images[selectedImageIndex]} 
                     alt={selectedItem.title}
                     className="w-full rounded-lg mb-6 transition-transform duration-300 group-hover:scale-105"
+                    style={{ maxHeight: '400px', height: '100%', objectFit: 'cover' }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-                    <span className="text-white text-lg font-medium">클릭하여 확대</span>
+                    <span className="text-white text-lg font-medium opacity-50">클릭하여 확대</span>
                   </div>
                 </div>
 
@@ -656,6 +799,7 @@ const hasMoreItems = visibleItemCount < filteredItems.length;
                         src={selectedItem.images[selectedImageIndex]} 
                         alt={selectedItem.title}
                         className="w-full max-h-[80vh] object-contain rounded-lg"
+                        style={{ maxHeight: '100vh', height: '100%' }}
                       />
                       
                       <button 
@@ -703,14 +847,15 @@ const hasMoreItems = visibleItemCount < filteredItems.length;
                   ))}
                 </div>
                 <div className="space-y-4">
-                  <p className="text-gray-600">{selectedItem.description}</p>
+                  {/* <p className="text-gray-600">{selectedItem.description}</p> */}
+                  <p className="text-gray-600"></p>
                   <div className="flex flex-wrap gap-2">
                     {selectedItem.tags.map(tag => (
                       <span 
                         key={tag}
                         className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm"
                       >
-                        #{tag}
+                        #{convertTagToKorean(tag)}
                       </span>
                     ))}
                   </div>
