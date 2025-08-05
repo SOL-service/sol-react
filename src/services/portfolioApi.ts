@@ -99,7 +99,7 @@ const getImageType = (url: string): 'main' | 'sub' => {
 };
 
 // API 응답 데이터를 폴더별로 그룹화하는 함수
-const groupDataByFolder = (category: string, data: unknown[]): { [folderName: string]: { mainImage?: string; subImages: string[]; folderPath: string } } => {
+const groupDataByFolder = (data: unknown[]): { [folderName: string]: { mainImage?: string; subImages: string[]; folderPath: string } } => {
   const folderGroups: { [folderName: string]: { mainImage?: string; subImages: string[]; folderPath: string } } = {};
   
   data.forEach((item: unknown) => {
@@ -147,7 +147,7 @@ export const fetchAllPortfolioDataGrouped = async (categories: string[]): Promis
         //   console.log(`${category} 데이터 배열 길이:`, response.data.length);
           
           // 폴더별로 데이터 그룹화
-          const folderGroups = groupDataByFolder(category, response.data);
+          const folderGroups = groupDataByFolder(response.data);
           groupedResults[category] = folderGroups;
           
         //   console.log(`${category} 카테고리 폴더 그룹화 결과:`, folderGroups);
